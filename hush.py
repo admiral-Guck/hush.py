@@ -26,7 +26,6 @@ def extract_date(file):
 		# Add a leading 0 to single-digit days
 		if len(day) == 1:
 			day = '0' + day
-		# print(file + ': ' + month, day, year, time)
 		return arrow.get(month + day + year + time, 'MMMDDYYYYHH:mm').timestamp
 
 def download_pollock():
@@ -43,7 +42,6 @@ if __name__ == '__main__':
 	# Create empty [1] so that 'if or' works
 	if len(sys.argv) == 1:
 		sys.argv.append('')
-# ;drop table users;
 	if os.path.isfile(local_hosts) and os.path.isfile(local_pollock_hosts):
 		local_pollock_date = extract_date(local_hosts)
 		download_pollock()
@@ -54,6 +52,7 @@ if __name__ == '__main__':
 			print("Backing up " + local_hosts + " to " + local_pollock_hosts)
 			subprocess.call(["/usr/bin/sudo", "/bin/cp", local_hosts, local_pollock_hosts])
 			# Patch with user mods
+			# TODO
 			print("Applying " + user_hosts)
 			# Write new hosts
 			print("Writing " + local_hosts)
